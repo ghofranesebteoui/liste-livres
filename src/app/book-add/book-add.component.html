@@ -1,0 +1,25 @@
+<h2>Ajout d'un nouveau livre :</h2>
+<!--Solution simplifiée pour la gestion du
+formulaire (non recommandée!!!)-->
+<form id="addForm">
+    <div class="mb-3">
+      <label for="title" class="form-label">Titre</label>
+      <input type="text" class="form-control" id="title" #title  /> 
+      <!-- sorte de ancre/réference sur ce bouton(title) -->
+    </div>
+    <div class="mb-3">
+      <label for="author" class="form-label">Auteur</label>
+      <input type="text" class="form-control" id="author" #author />
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Prix</label>
+      <input type="number" class="form-control" id="price" #price />
+    </div>
+    <button 
+        type="button" 
+        id="btnValidAdd" 
+        class="btn btn-primary" 
+        (click)="addBook(title.value, author.value, +price.value)">
+            Valider
+        </button>
+  </form>

@@ -1,0 +1,46 @@
+<!--1er type de binding: Interpolation-->
+<h2>{{title}}</h2>
+<!--2ème type de binding: event binding-->
+<button class="btn btn-info" 
+(click)="changeAction('add')"
+>Ajouter un livre</button>
+<!--Affichage conditionnel: directive ngIf(version <17) et @if à partir de la version 17-->
+@if (action==="add"){
+  <app-book-add [lastId]="books[books.length-1].id"
+  (bookCreated)="addBook($event)"></app-book-add>
+}
+
+<table class="table table-striped">
+    <thead>
+      <tr class="dark">
+        <th scope="col">#</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Auteur</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Editer</th>
+        <th scope="col">Supprimer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--Affichage en boucle: Directive of ngFor(avant version17) ou @for (à partir de la version17)-->
+      @for (book of books; track $index) {
+        <tr>
+          <th scope="row">{{book.id}}</th>
+          <td>{{book.title}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.price}}</td>
+          <td><button class="btn btn-success"
+            (click)="getId(book.id)"
+            >Editer</button></td>
+          <td><button class="btn btn-danger"
+            (click)="deleteBook(book)"
+            >Supprimer</button></td>
+        </tr>
+      }
+
+    </tbody>
+</table>
+@if (action==="edit"){
+  <app-book-edit [bookEdit]="selectedBook" (bookEdited)="editBook($event)">
+  </app-book-edit>
+}
